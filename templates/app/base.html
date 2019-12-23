@@ -1,0 +1,97 @@
+	<!DOCTYPE html>
+
+	{% load static %}
+
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Qué comemos hoy?</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="{% static "app/plugins/bootstrap/css/bootstrap.min.css" %}">
+
+ 	<!--[if lt IE 9]><link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="{% static "app/css/custom.css" %}">
+
+</head>
+
+
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h1 class="navbar-brand">Qué comemos hoy?</h1>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-toggle="collapse" data-target=".navbar-collapse.in">
+      <ul class="nav navbar-nav" id="type_selector">
+		<li role="presentation" class="active"><a href="#" data-type="todo">Todo</a></li>
+		<li role="presentation"><a href="#" data-type="weekly_menu">Hacer menu</a></li>
+		<li role="presentation"><a href="#" data-type="carne">Carne</a></li>
+		<li role="presentation"><a href="#" data-type="pasta">Pasta</a></li>
+		<li role="presentation"><a href="#" data-type="pescado">Pescado</a></li>
+		<li role="presentation"><a href="#" data-type="guiso">Guiso</a></li>
+		<li role="presentation"><a href="#" data-type="especial">Especial</a></li>
+		<li role="presentation"><a href="#" data-type="postre">Postre</a></li>
+		<li role="presentation"><a href="#" data-type="add"> + </a></li>
+		<li role="presentation"><a href="#" data-type="new"> Nuevas </a></li>
+		<li role="presentation"><a href="#" data-type="lista">Lista</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<section id="productos" class="about-section section-first">
+
+{% block body_block %}
+{% endblock %}
+
+</section>
+
+
+
+	<!-- End Contact Section -->
+	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="{% static "app/plugins/jquery/jquery.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "app/plugins/jquery/jquery-migrate.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "app/plugins/bootstrap/js/bootstrap.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "app/plugins/mustache.min.js" %}"></script>
+
+	<!--[if lt IE 9]>
+		<script src="assets/plugins/respond.js"></script>
+		<script src="assets/plugins/html5shiv.js"></script>
+		<script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+		<script src="assets/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+	<![endif]-->
+
+	<!--[if lt IE 10]>
+		<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+	<![endif]-->
+</body>
+</html>

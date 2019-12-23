@@ -1,0 +1,122 @@
+@import url(../fonts/font.css);
+
+ul {
+    font-size: 18px;
+    padding: 0px;
+
+}
+
+li {
+    padding-left: 20px;
+    list-style: none;
+/*    border-bottom: 1px solid white;
+*/}
+
+li ul li {
+    border-bottom: 1px dashed white;
+}
+
+li ul li:last {
+    border-bottom: 0px;
+}
+
+li.receipt {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+
+.receipt .img-wrapper {
+    height: 200px;
+    overflow: hidden;
+}
+ 
+.receipt a {
+    color: black;
+}
+
+.task.done {
+    text-decoration: line-through;
+    background-color: grey;
+}
+
+.task {
+    color: white;
+    background-color: #56A356;
+    height: 60px;
+}
+
+.task.verde_1 {
+    background-color: #97E567;
+}
+
+.task.verde_2 {
+    background-color: #78E89D;
+}
+
+.task.verde_3 {
+    background-color: #6DD6BF;
+}
+
+.task.verde_4 {
+    background-color: #5DDD92;
+}
+
+.task.verde_5 {
+    background-color: #9BDDA1;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 20px;
+}
+
+ul li ul {
+    margin: -20px;
+}
+
+a {
+    color: #FFFFFF;
+}
+
+.nav-pills>li {
+    padding: 0px;
+}
+
+.nav-pills>li>a {
+    color: #000000;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background-color: #A8DBA8;
+}
+
+.alert {
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+/*  .speech {border: 1px solid #DDD; width: 300px; padding: 0; margin: 0}
+  .speech input {border: 0; width: 240px; display: inline-block; height: 30px;} */
+  .speech img {float: right; width: 40px }
+
+#createLista p {
+    font-size: 22px;
+    padding-left: 14px;
+
+}
+
+h1, h2, h3, h4, p, a {
+    font-family: 'sinkin_sans400_regular';
+}
+
+h1 {
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
+}
+
+.content-boxes-v6 {
+    margin-top: 100px;
+}

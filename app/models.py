@@ -1,0 +1,57 @@
+from django.db import models
+
+# Create your models here.
+
+complexity_choices = [
+	('EASY', 'facil'),
+	('MEDIUM', 'medio'),
+	('DIFFICULT', 'dificil')
+]
+
+category_choices = [
+	('verduras','verduras'),
+	('pasta','pasta'),
+	('carne','carne'),
+	('especial','especial'),
+	('guiso','guiso'),
+	('postre','postre'),
+	('pescado','pescado')
+]
+
+duration_choices = [
+	('short','corto'),
+	('medium','medio'),
+	('long','largo')
+]
+
+class Meal(models.Model):
+    name = models.CharField(max_length=264, unique=True)
+    category = models.CharField(max_length=264, choices=category_choices)
+    ingredients = models.TextField()
+    complexity = models.CharField(max_length=264, choices=complexity_choices)
+    duration = models.CharField(max_length=264, choices=duration_choices)
+    link = models.URLField()
+    is_new = models.BooleanField()
+    image_name = models.CharField(max_length=264)
+
+    def __str__(self):
+        return self.name
+
+
+# class Webpage(models.Model):
+#     topic = models.ForeignKey(Topic,on_delete=models.CASCADE)
+#     name = models.CharField(max_length=264, unique=True)
+#     url = models.URLField(unique=True)
+
+
+#     def __str__(self):
+#         return self.name
+
+
+# class AccessRecord(models.Model):
+#     name = models.ForeignKey(Webpage, on_delete=models.CASCADE)
+#     date = models.DateField()
+
+
+#     def __str__(self):
+#         return str(self.date)
