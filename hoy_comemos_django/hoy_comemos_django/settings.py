@@ -27,7 +27,9 @@ SECRET_KEY = 'v4_^0+9i&1&kotq@9r2mx3r$3n#kskt68p!e+nf*pxjbcl=2l9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'killoncio.pythonanywhere.com'
+]
 
 
 # Application definition
