@@ -28,7 +28,8 @@ SECRET_KEY = 'v4_^0+9i&1&kotq@9r2mx3r$3n#kskt68p!e+nf*pxjbcl=2l9'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'killoncio.pythonanywhere.com'
+    'killoncio.pythonanywhere.com',
+    '127.0.0.1'
 ]
 
 
