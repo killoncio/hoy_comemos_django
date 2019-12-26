@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from app.models import Meal
+from .forms import MealForm
+
 # Create your views here.
 
 def index(request):
@@ -7,3 +9,16 @@ def index(request):
 	meals_dict = {'meals_list': meals_list}
 
 	return render(request,'app/index.html',context=meals_dict)
+
+def add_meal(request):
+	form = MealForm()
+
+	if request.method == "POST":
+		form = MealForm(request.POST)
+		if form.is_valid():
+			form.save(commit=True)
+			return index(request)
+		else:
+			print('ERROR FORM INVALID')
+
+	return render(request,'app/add_meal.html',{'form':form})	
