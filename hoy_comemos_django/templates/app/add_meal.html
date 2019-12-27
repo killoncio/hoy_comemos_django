@@ -2,15 +2,29 @@
 {% extends "app/base.html" %}
 
 {% load static %}
+{% load myfilters %}
 
 {% block body_block %}
+<div class="col-md-12">
 <h1>Nuevo plato</h1>
 
+{{ form.non_field_errors }}
 <form method="POST">
-	{{form.as_p}}
 	{% csrf_token %}
-	<input type="submit" class="btn btn-primary" value="submit">
+	{% for field in form %}
+	    <div class="form-group">
+<!-- 	        <label for="exampleInputEmail1">Email address</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+		    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+	        {{ field.errors }}
+	        {{ field.label_tag }} {{ field|addclass:'form-control' }}
+	        {% if field.help_text %}
+	        <p class="help">{{ field.help_text|safe }}</p>
+	        {% endif %}
+	    </div>
+	{% endfor %}
+	<input type="Guardar" class="btn btn-primary btn-block" value="submit">
 
 </form>
-
+</div>
 {% endblock %}
