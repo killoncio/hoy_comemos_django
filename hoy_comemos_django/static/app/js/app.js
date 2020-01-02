@@ -4,6 +4,8 @@ var purchaseListWrapper = $('#purchase_text');
 var purchaseList = '';
 var chooseWeeklyMenuTemplate = $('#choose_weekly_menu_template').html();
 var mealsListTemplate = $('#meals_list_template').html();
+var footer = $('.footer');
+var selectedFilters = [];
 
 function render(template, dataObject) {
 	Mustache.parse(template);   // optional, speeds up future uses
@@ -140,7 +142,6 @@ var renderView = function(e) {
 	} else {
 		receipts.addClass('hide').filter("[data-category=" + type + "]").removeClass('hide');
 	}
-
 }
 
 function showRandomElement() {
@@ -255,6 +256,35 @@ function saveUrl(id, url) {
     });
 }
 
+function toggleFiltersModal() {
+	footer.toggleClass('toggle');
+}
+
+function applyFilters(e) {
+	if (receipts.length === 0) {
+		receipts = $('.receipt');
+	}
+
+	var filter = $(e.target).data('category');
+
+	if (selectedFilters.indexOf(filter) > -1) {
+		selectedFilters.splice(selectedFilters.indexOf(filter),1)
+	} else {
+		selectedFilters.push(filter)
+	}
+
+	if (selectedFilters.length > 0) {
+		receipts.addClass('hide').filter(function() {
+			for (var i=0; i < selectedFilters.length; i++) {
+				return $(this).data('category') === selectedFilters[i] 
+			}
+		}).removeClass('hide');
+	} else {
+		receipts.removeClass('hide');
+	}
+
+}
+
 function attachEvents() {
 	$('#receipt_list')
 		.on('touchstart', '.receipt', onTouchStart)
@@ -268,6 +298,9 @@ function attachEvents() {
 	$('#ingredients_text')
 		.on('click','.ingredients_close_button',hideIngredients)
 		.on('click','.ingredients_submit_button',addIngredientsToPurchaseList);
+	footer
+		.on('click','button', toggleFiltersModal)
+		.on('click','.meal_filter input', applyFilters)
 }
 
 function init() {
