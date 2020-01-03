@@ -213,10 +213,11 @@ function showIngredients(event) {
 	var trigger = $(event.target);
 	var ingredients = trigger.parent('.receipt_name').siblings('.receipt_ingredients').text();
 
-	var template = $('#ingredients_template').html();
-	Mustache.parse(template);   // optional, speeds up future uses
-	var rendered = Mustache.render(template,{'ingredients': ingredients});
-	$('#ingredients_text').html(rendered);
+	var template = $('#ingredients_template').clone();
+	// Mustache.parse(template);   // optional, speeds up future uses
+	// var rendered = Mustache.render(template,{'ingredients': ingredients});
+	template.removeClass('hide').find('.ingredients_list').html(ingredients);
+	$('#ingredients_text').html(template);
 
 }
 

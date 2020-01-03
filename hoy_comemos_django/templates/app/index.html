@@ -12,7 +12,7 @@
 <h1>Comidas</h1>
 
 	{% if meals_list %}
-	<ul>
+	<ul id="receipt_list">
 	{% for meal in meals_list %}
 		<li id={{ meal.id }} 
 			class='receipt {% if meal.is_new %}receipt_new{% endif %}' 
@@ -48,7 +48,8 @@
 	{% else %}
 	<h2> No hay comidas </h2>h2>
 	{% endif %}
-
+				<div id="ingredients_text">
+					</div>
 </div>
 </div>
 </div>
@@ -68,4 +69,22 @@
       	</ul>
 	</div>
 </footer>
+
+<div id="ingredients_template" class="hide"
+	style="
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    padding: 20px;
+	padding-top: 100px;
+	overflow: scroll;
+">
+	<div class="ingredients_close_button">x</div>
+	<div class="ingredients_list">
+	</div>
+	<button class="btn btn-secondary ingredients_submit_button">Poner en lista</button>
+</div>
 {% endblock %}
