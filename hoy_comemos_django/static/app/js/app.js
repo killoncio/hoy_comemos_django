@@ -260,7 +260,7 @@ function saveUrl(id, url) {
 
 function getFiltersModalHeight() {
 	if (!filtersModalHeight) {
-		filtersModalHeight = $('.footer ul').innerHeight();
+		filtersModalHeight = $('.footer ul').innerHeight() - 10;
 	} 
 
 	return filtersModalHeight;
