@@ -6,6 +6,8 @@ var chooseWeeklyMenuTemplate = $('#choose_weekly_menu_template').html();
 var mealsListTemplate = $('#meals_list_template').html();
 var footer = $('.footer');
 var selectedFilters = [];
+var filtersModalHeight = 0;
+var filterVisible = false;
 
 function render(template, dataObject) {
 	Mustache.parse(template);   // optional, speeds up future uses
@@ -256,8 +258,18 @@ function saveUrl(id, url) {
     });
 }
 
+function getFiltersModalHeight() {
+	if (!filtersModalHeight) {
+		filtersModalHeight = $('.footer ul').innerHeight();
+	} 
+
+	return filtersModalHeight;
+}
+
 function toggleFiltersModal() {
-	footer.toggleClass('toggle');
+	var height = filterVisible ? 0 : getFiltersModalHeight();
+	footer.css({'-webkit-transform':'translateY(-' + height + 'px)'});
+	filterVisible = !filterVisible
 }
 
 function applyFilters(e) {
