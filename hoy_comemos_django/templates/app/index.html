@@ -9,8 +9,8 @@
 <div class="row">
 <div class="content-boxes-v6">
 
-<h1>Comidas</h1>
-
+<!-- <h1>Comidas</h1>
+ -->
 	{% if meals_list %}
 	<ul id="receipt_list">
 	{% for meal in meals_list %}
@@ -22,11 +22,11 @@
 			{% if meal.link %}
 				<a class="text-primary" href={{ meal.link }} target='_blank'><strong>{{ meal.name|title }}</strong></a>
 			{% else %}
-				{{ meal.name|title }}
+				<strong>{{ meal.name|title }}</strong>
 			{% endif %}
 
 			{% if meal.ingredients %}
-				<span class="ingredients_trigger">-i-</span>
+				<span class="glyphicon glyphicon glyphicon-menu-right ingredients_trigger	" aria-hidden="true"></span>
 			{% endif %}
 
 <!-- 			{% if meal.is_new %}
@@ -71,21 +71,19 @@
 	</div>
 </footer>
 
-<div id="ingredients_template" class="hide"
-	style="
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-    padding: 20px;
-	padding-top: 100px;
-	overflow: scroll;
-">
-	<div class="ingredients_close_button">x</div>
-	<div class="ingredients_list">
+<div class="ingredients_template js-ingredients_template hide">
+    <div class="modal-header">
+		<button type="button" class="close ingredients_close_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Ingredientes</h4>
 	</div>
-	<button class="btn btn-secondary ingredients_submit_button">Poner en lista</button>
+
+	<div class="modal-body ingredients_list">
+	</div>
+
+    <div class="modal-footer">
+<!-- 		<button type="button" class="btn btn-default ingredients_submit_button">Poner en lista</button> -->
+        <button type="button" class="btn btn-secondary ingredients_close_button" data-dismiss="modal">Cerrar</button>
+    </div>
+
 </div>
 {% endblock %}

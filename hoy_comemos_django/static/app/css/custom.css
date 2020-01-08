@@ -1,5 +1,9 @@
 @import url(../fonts/font.css);
 
+.glyphicon {
+    color: #337ab7;
+}
+
 ul {
     font-size: 18px;
     padding: 0px;
@@ -135,4 +139,17 @@ h1 {
 
 .footer button {
     margin-top: 10px;
+}
+
+.ingredients_template {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    padding: 20px;
+    padding-top: 70px;
+    overflow: scroll;
+    z-index:1;
 }
