@@ -19,24 +19,25 @@
 			data-category={{ meal.category }} 
 			draggable="true">		
 			<div class="receipt_name">
+			{% if meal.link %}
+				<a class="text-primary" href={{ meal.link }} target='_blank'><strong>{{ meal.name }}</strong></a>
+			{% else %}
 				{{ meal.name }}
-				{% if meal.ingredients %}
+			{% endif %}
+
+			{% if meal.ingredients %}
 				<span class="ingredients_trigger">-i-</span>
-				{% endif %}
-				{% if meal.link %}
-				<span><a href={{ meal.link }} target='_blank'>></a></span>
-				{% else %}
-				<span><a href="#" class="url_set">+</a></span>
-				{% endif %}
-				{% if meal.is_new %}
+			{% endif %}
+
+<!-- 			{% if meal.is_new %}
 				<span class="label label-success">New!</span>
-				{% endif %}
+			{% endif %} -->
 			</div>
 			<div class='receipt_image img-wrapper'style="position: relative">
 	    		<img class='img-responsive'  
 	    			src="{% static "app/images/" %}{{ meal.image_name }}"  
 	    			alt="Uh Oh, didn't show!"
-	    			onerror="this.onerror=null;this.src='assets/img/placeholder.jpg';">
+	    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
 			</div>
 			<div class="receipt_ingredients hide">
 				{{ meal.ingredients }}

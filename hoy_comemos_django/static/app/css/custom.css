@@ -30,10 +30,7 @@ li.receipt {
     height: 200px;
     overflow: hidden;
 }
- 
-.receipt a {
-    color: black;
-}
+
 
 .task.done {
     text-decoration: line-through;
