@@ -5,7 +5,7 @@ from app.models import Meal
 class MealForm(ModelForm):
 	class Meta:
 		model = Meal
-		fields = '__all__'
+		exclude = ['is_new','image_name']
 		labels = {
 		    'name' : 'Nombre',
 		    'category' : 'Categoria',
@@ -13,7 +13,5 @@ class MealForm(ModelForm):
 		    'complexity' : 'Complejidad',
 		    'duration' : 'Duracion',
 		    'link' : 'Link',
-		    'is_new' : 'Nuevo',
-		    'image_name' : 'Imagen'
 		}
 
