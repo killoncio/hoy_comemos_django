@@ -29,6 +29,7 @@ li.receipt {
 .receipt .img-wrapper {
     height: 200px;
     overflow: hidden;
+    background-color: #e7f0f9;
 }
 
 
