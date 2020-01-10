@@ -25,14 +25,14 @@ duration_choices = [
 ]
 
 class Meal(models.Model):
-    name = models.CharField(max_length=264, unique=True)
-    category = models.CharField(max_length=264, choices=category_choices)
-    ingredients = models.TextField()
-    complexity = models.CharField(max_length=264, choices=complexity_choices)
-    duration = models.CharField(max_length=264, choices=duration_choices)
-    link = models.URLField()
-    is_new = models.BooleanField()
-    image_name = models.CharField(max_length=264)
+    name = models.CharField(default="",max_length=264, unique=True)
+    category = models.CharField(default="",max_length=264, choices=category_choices)
+    ingredients = models.TextField(default="")
+    complexity = models.CharField(default="",max_length=264, choices=complexity_choices)
+    duration = models.CharField(default="",max_length=264, choices=duration_choices)
+    link = models.URLField(default="")
+    is_new = models.BooleanField(default=True)
+    image_name = models.CharField(default="",max_length=264)
 
     def __str__(self):
         return self.name
