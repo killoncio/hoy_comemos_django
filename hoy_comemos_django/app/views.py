@@ -45,4 +45,10 @@ def modify_meal(request, id):
 		else:
 			print('ERROR FORM INVALID')
 
-	return render(request,'app/add_meal.html',{'form':form})
+	return render(request,'app/modify_meal.html',{'form':form})
+
+def meal(request,id):
+	meal = Meal.objects.get(id=id)
+	meal_dict = {'meal': meal}
+
+	return render(request,'app/meal.html',context=meal_dict)

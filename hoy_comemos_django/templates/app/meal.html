@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends "app/base.html" %}
+
+{% load static %}
+{% load myfilters %}
+
+{% block body_block %}
+<div class="container">
+<div class="row">
+<div class="content-boxes-v6">
+<div class="col-md-12">
+	{% for field in form %}
+		{{field}}
+	{% endfor %}
+<!-- <h1>Nuevo plato</h1>
+ -->
+	    
+<!-- 	        <label for="exampleInputEmail1">Email address</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+		    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			<div class='receipt_image img-wrapper'style="position: relative">
+	    		<img class='img-responsive'  
+	    			src="{% static "app/images/" %}{{ meal.image_name }}"  
+	    			alt="Uh Oh, didn't show!"
+	    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
+			</div>
+	        <h1>{{ meal.name }}</h2>
+	        {% if meal.ingredients %}
+	        <h2>Ingredientes</h2>
+	        <p>{{ meal.ingredients }}</p>
+	        {% endif %}
+	        {% if meal.category %}
+	        <h3>Categoria</h3>
+	        <p>{{ meal.category }}</p>
+	        {% endif %}
+	        {% if meal.complexity %}
+	        <h3>Complejidad</h3>
+	        <p>{{ meal.complexity }}</p>
+	        {% endif %}
+	        {% if meal.duration %}
+	        <h3>Duracion</h3>
+	        <li>{{ meal.duration }}</li>
+	        {% endif %}
+	        {% if meal.link %}
+	        <p><a href="{{ meal.link }}">Receta</a></p>
+	        {% endif %}
+	<a type="button" href="{% url 'app:modify_meal' meal.id %}" class="btn btn-primary btn-block">Modificar</a>
+
+</div>
+</div>
+</div>
+{% endblock %}

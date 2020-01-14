@@ -20,7 +20,7 @@
 			draggable="true">		
 			<div class="receipt_name">
 			{% if meal.link %}
-				<a class="text-primary" href={{ meal.link }} target='_blank'><strong>{{ meal.name|title }}</strong></a>
+				<a class="text-primary" href="{% url 'app:meal' meal.id %}" target='_blank'><strong>{{ meal.name|title }}</strong></a>
 			{% else %}
 				<strong>{{ meal.name|title }}</strong>
 			{% endif %}
