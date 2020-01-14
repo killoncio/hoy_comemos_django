@@ -36,7 +36,7 @@
 	    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
 			</div>
 			<div class="receipt_ingredients hide">
-				{{ meal.ingredients }}
+				{{ meal.ingredients|linebreaks }}
 			</div>
 		</li>
     {% endfor %}

@@ -27,7 +27,7 @@
 	        <h1>{{ meal.name }}</h2>
 	        {% if meal.ingredients %}
 	        <h2>Ingredientes</h2>
-	        <p>{{ meal.ingredients }}</p>
+	        <p>{{ meal.ingredients|linebreaks }}</p>
 	        {% endif %}
 	        {% if meal.category %}
 	        <h3>Categoria</h3>
