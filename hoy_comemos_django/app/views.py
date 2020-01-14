@@ -21,4 +21,28 @@ def add_meal(request):
 		else:
 			print('ERROR FORM INVALID')
 
-	return render(request,'app/add_meal.html',{'form':form})	
+	return render(request,'app/add_meal.html',{'form':form})
+
+def modify_meal(request, id):
+	meal = Meal.objects.get(id=id)
+	mealDetails = {
+		'name': meal.name,
+		'category':meal.category,
+		'ingredients':meal.ingredients,
+		'complexity':meal.complexity,
+		'duration':meal.duration,
+		'link':meal.link,
+		'image_name':meal.image_name
+	}
+
+	form = MealForm(initial = mealDetails)
+
+	if request.method == "POST":
+		form = MealForm(request.POST, instance = meal)
+		if form.is_valid():
+			form.save(commit=True)
+			return index(request)
+		else:
+			print('ERROR FORM INVALID')
+
+	return render(request,'app/add_meal.html',{'form':form})
