@@ -68,11 +68,6 @@ li.receipt {
     background-color: #9BDDA1;
 }
 
-h1 {
-    font-size: 24px;
-    margin: 20px;
-}
-
 ul li ul {
     margin: -20px;
 }
@@ -112,7 +107,6 @@ h1 {
     color: black;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 20px;
 }
 
 .content-boxes-v6 {
