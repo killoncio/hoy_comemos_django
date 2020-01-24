@@ -39,19 +39,6 @@ function createImageName(receipts) {
 // data structure: {"id": 1, "nombre":"pittige varkenhaas", "category":"carne"}
 var mealsData = [];
 
-function loadMealsList() {
-    $.ajax({
-        url: 'get_receipts.php',
-        method: 'GET',
-        dataType:'json'
-    }).done(function(data){
-    	mealsData = createImageName(data);
-        render(mealsListTemplate, {'receipts': mealsData});
-    });
-}
-
-
-
 var weeklyMenu = {
 	daylyCategory: ["pasta","pescado","guiso","verduras","pizza","pasta","carne"],
 	day: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
@@ -317,10 +304,6 @@ function attachEvents() {
 }
 
 function init() {
-
-
-// createImageName();
-	loadMealsList();
 	attachEvents();
 }
 
