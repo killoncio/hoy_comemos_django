@@ -13,7 +13,7 @@
 <!-- <h1>Nuevo plato</h1>
  -->
 {{ form.non_field_errors }}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
 	{% for field in form %}
 	    <div class="form-group">

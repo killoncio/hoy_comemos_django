@@ -14,7 +14,7 @@ def add_meal(request):
 	form = MealForm()
 
 	if request.method == "POST":
-		form = MealForm(request.POST)
+		form = MealForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save(commit=True)
 			return index(request)
@@ -38,7 +38,7 @@ def modify_meal(request, id):
 	form = MealForm(initial = mealDetails)
 
 	if request.method == "POST":
-		form = MealForm(request.POST, instance = meal)
+		form = MealForm(request.POST, request.FILES, instance = meal)
 		if form.is_valid():
 			form.save(commit=True)
 			return index(request)

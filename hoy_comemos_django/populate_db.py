@@ -31,7 +31,7 @@ meals = [
     (21, 'garbanzos con chorizo', 'guiso', '', '', '', '', 0),
     (23, 'atun', 'pescado', '', '', '', '', 0),
     (54, 'Tortitas americanas', 'postre', '', 'baja', 'baja', 'http://www.gutamama.com/2014/03/tortitas-americanas-o-pancakes.html?m=1', 0),
-    (25, 'rissoto', 'pasta', '', '', '', '', 0),
+    (25, 'risotto', 'pasta', '', '', '', '', 0),
     (26, 'carbonara al curry', 'pasta', '', '', '', 'http://javirecetas.hola.com/carbonara-al-curry/', 0),
     (27, 'mouse chocolate negro', 'postre', '', '', '', 'http://javirecetas.hola.com/mousse-de-chocolate-negro/', 0),
     (28, 'risotto gambas', 'pasta', '', '', '', 'http://javirecetas.hola.com/risotto-de-gambas-y-esparragos/', 0),
@@ -45,7 +45,7 @@ meals = [
     (52, 'caballa', 'pescado', '', '', '', '', 0),
     (37, 'solomillo al whiski', 'carne', '', '', '', 'http://javirecetas.hola.com/solomillo-al-whisky/', 0),
     (39, 'suddervlees met frites', 'carne', '', '', '', 'https://www.ah.nl/allerhande/recept/R-R591756/suddervlees-met-frites;WLSESSIONID=PdNwxBQKYbzV4IlU3H_MKvRSpSqFKOg9EdVBJHsgafiXmpppoJbd!2135815550?_requestid=7279938', 0),
-    (40, 'notentaar', 'postre', '', '', '', 'https://www.ah.nl/allerhande/recept/R-R869432/intense-notentaart?returnId=591756&_requestid=7280222', 0),
+    (40, 'notentaart', 'postre', '', '', '', 'https://www.ah.nl/allerhande/recept/R-R869432/intense-notentaart?returnId=591756&_requestid=7280222', 0),
     (41, 'rollo de roquefort y jamon york', 'especial', '', '', '', 'http://pandora-lacocinadepandora.blogspot.nl/2010/08/rollo-de-roquefort-con-jamon-york.html', 0),
     (42, 'arroz con pollo', 'guiso', '', '', '', 'http://javirecetas.hola.com/arroz-con-pollo/', 0),
     (43, 'entrecot con patatas a las finas hierbas', 'carne', '', 'media', 'alta', 'https://www.youtube.com/watch?v=nQxUNwbShSg', 0),
@@ -100,7 +100,7 @@ def populate(mealsList):
         mealEntry = Meal.objects.get_or_create(name=name, category=category, ingredients=ingredients, complexity=complexity, duration=duration,link=link,is_new=is_new, image_name = image_name)[0]
 
 def createMealImage(name):
-    charsToReplace = [" a la ", " a las ", " y "," con "," al "," met "," de "," la "," las "," en ", " a ", " and ", " "];
+    charsToReplace = [" a la ", " a las ", " y "," con "," al "," met "," de "," la "," las "," en ", " a ", " and ", " ", ","];
     imageName = name.lower()
 
     for char in charsToReplace:

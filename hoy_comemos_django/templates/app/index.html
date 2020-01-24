@@ -31,7 +31,7 @@
 			</div>
 			<div class='receipt_image img-wrapper'style="position: relative">
 	    		<img class='img-responsive'  
-	    			src="{% static "app/images/" %}{{ meal.image_name }}"  
+	    			src="{{ meal.image.url }}"  
 	    			alt="Uh Oh, didn't show!"
 	    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
 			</div>

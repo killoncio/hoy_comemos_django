@@ -33,10 +33,10 @@ class Meal(models.Model):
     link = models.URLField(default="")
     is_new = models.BooleanField(default=True)
     image_name = models.CharField(default="",max_length=264)
+    image = models.ImageField(upload_to='images')
 
     def __str__(self):
         return self.name
-
 
 # class Webpage(models.Model):
 #     topic = models.ForeignKey(Topic,on_delete=models.CASCADE)
