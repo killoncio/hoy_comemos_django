@@ -44,7 +44,7 @@
 	        {% if meal.link %}
 	        <h4><a href="{{ meal.link }}">Receta</a></h4>
 	        {% endif %}
-	        {% if meal.dates %}
+	        {% if meal.dates.count > 0 %}
 	        <h4>Comido los dias:</h4>
 				{% for date in meal.dates.all %}
 					<p>{{date}}</p>
