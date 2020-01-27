@@ -48,10 +48,10 @@ class Meal(models.Model):
 #         return self.name
 
 
-# class AccessRecord(models.Model):
-#     name = models.ForeignKey(Webpage, on_delete=models.CASCADE)
-#     date = models.DateField()
+class Dates(models.Model):
+    name = models.ForeignKey('app.Meal', on_delete=models.CASCADE, related_name='dates')
+    date = models.DateField() 
 
 
-#     def __str__(self):
-#         return str(self.date)
+    def __str__(self):
+        return str(self.date)

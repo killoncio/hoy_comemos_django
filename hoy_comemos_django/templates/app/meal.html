@@ -18,7 +18,7 @@
 <!-- 	        <label for="exampleInputEmail1">Email address</label>
 		    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
 		    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-	        <h2>{{ meal.name }}</h2>
+	        <h3>{{ meal.name }}</h3>
 			<div class='receipt_image img-wrapper'style="position: relative">
 	    		<img class='img-responsive'  
 	    			src="{{ meal.image.url }}"  
@@ -26,7 +26,7 @@
 	    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
 			</div>
 	        {% if meal.ingredients %}
-	        <h3>Ingredientes</h3>
+	        <h4>Ingredientes</h4>
 	        <p>{{ meal.ingredients|linebreaks }}</p>
 	        {% endif %}
 	        {% if meal.category %}
@@ -42,8 +42,15 @@
 	        <p>{{ meal.duration }}</p>
 	        {% endif %}
 	        {% if meal.link %}
-	        <h3><a href="{{ meal.link }}">Receta</a></h3>
+	        <h4><a href="{{ meal.link }}">Receta</a></h4>
 	        {% endif %}
+	        {% if meal.dates %}
+	        <h4>Comido los dias:</h4>
+				{% for date in meal.dates.all %}
+					<p>{{date}}</p>
+				{% endfor %}
+	        {% endif %}
+
 	<a type="button" href="{% url 'app:modify_meal' meal.id %}" class="btn btn-primary btn-block">Modificar</a>
 
 </div>
