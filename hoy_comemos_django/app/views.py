@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from app.models import Meal
-from .forms import MealForm
+from django.shortcuts import render, get_object_or_404, redirect
+from app.models import Meal, Dates
+from .forms import MealForm, DateForm
+from django.utils import timezone
 
 # Create your views here.
 
@@ -48,7 +49,21 @@ def modify_meal(request, id):
 	return render(request,'app/modify_meal.html',{'form':form})
 
 def meal(request,id):
-	meal = Meal.objects.get(id=id)
+	meal = get_object_or_404(Meal, id=id)
+	form = DateForm()
+
+	if request.method == "POST":
+		form = DateForm(request)
+		if form.is_valid():
+			date = form.save(commit=False)
+			date.name = meal
+			form.save(commit=True)
+		else:
+			print(request.POST)
+			print('ERROR FORM INVALID')
+
 	meal_dict = {'meal': meal}
 
 	return render(request,'app/meal.html',context=meal_dict)
+
+

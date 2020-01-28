@@ -49,8 +49,8 @@ class Meal(models.Model):
 
 
 class Dates(models.Model):
-    name = models.ForeignKey('app.Meal', on_delete=models.CASCADE, related_name='dates')
-    date = models.DateField() 
+    name = models.ForeignKey('app.Meal', on_delete=models.CASCADE, related_name='dates', blank = True)
+    date = models.DateField(auto_now=True, blank = True)
 
 
     def __str__(self):
