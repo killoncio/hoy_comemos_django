@@ -25,7 +25,7 @@ def add_meal(request):
 	return render(request,'app/add_meal.html',{'form':form})
 
 def modify_meal(request, id):
-	meal = Meal.objects.get(id=id)
+	meal = get_object_or_404(Meal, id=id)
 	mealDetails = {
 		'name': meal.name,
 		'category':meal.category,
@@ -42,7 +42,8 @@ def modify_meal(request, id):
 		form = MealForm(request.POST, request.FILES, instance = meal)
 		if form.is_valid():
 			form.save(commit=True)
-			return index(request)
+			meal_dict = {'meal': meal}
+			return render(request,'app/meal.html',context=meal_dict)
 		else:
 			print('ERROR FORM INVALID')
 
