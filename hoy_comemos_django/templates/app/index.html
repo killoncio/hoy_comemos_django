@@ -8,7 +8,9 @@
 <div class="container">
 <div class="row">
 <div class="content-boxes-v6">
-
+<div class="form-group input_autocomplete">
+	<input class="js-autocomplete form-control" type="text">
+</div>
 <!-- <h1>Comidas</h1>
  -->
 	{% if meals_list %}
@@ -45,8 +47,7 @@
 	{% else %}
 	<h2> No hay comidas </h2>h2>
 	{% endif %}
-				<div id="ingredients_text">
-					</div>
+
 </div>
 </div>
 </div>
@@ -56,6 +57,7 @@
 	<div class="container">
 		<button class="btn btn-primary btn-block">Filtrar</button>
       	<ul class="nav navbar-nav meal_filter">
+			<li role="presentation"><input type="checkbox" data-category="verduras"> Verduras</input></li>
 			<li role="presentation"><input type="checkbox" data-category="carne"> Carne</input></li>
 			<li role="presentation"><input type="checkbox" data-category="pasta"> Pasta</input></li>
 			<li role="presentation"><input type="checkbox" data-category="pescado"> Pescado</input></li>

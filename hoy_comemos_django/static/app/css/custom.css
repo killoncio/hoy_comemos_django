@@ -24,11 +24,13 @@ li ul li:last {
     border-bottom: 0px;
 }
 
-li.receipt {
+li.receipt, .input_autocomplete {
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 20px;
 }
+
+
 
 .receipt .img-wrapper {
     height: 200px;

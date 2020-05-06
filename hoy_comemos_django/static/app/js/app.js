@@ -1,6 +1,5 @@
 var receipts =  $('.receipt');
 var addForm = $('#addRecetaForm');
-var purchaseListWrapper = $('#purchase_text');
 var purchaseList = '';
 var chooseWeeklyMenuTemplate = $('#choose_weekly_menu_template').html();
 var mealsListTemplate = $('#meals_list_template').html();
@@ -8,32 +7,12 @@ var footer = $('.footer');
 var selectedFilters = [];
 var filtersModalHeight = 0;
 var filterVisible = false;
+var inputFilter = $('.js-autocomplete');
 
 function render(template, dataObject) {
 	Mustache.parse(template);   // optional, speeds up future uses
 	var rendered = Mustache.render(template, dataObject);
 	$('#receipt_list').html(rendered);
-}
-
-function createImageName(receipts) {
-	var wordsToReplace = [" a la ", " a las ", " y "," con "," al "," met "," de "," la "," las "," en ", " a ", " and ", " "];
-
-	for (var i=0; i < receipts.length; i++) {
-		var receipt = receipts[i];
-		var image_name = receipt.name.toLowerCase();
-		var re;
-		for (var j=0; j < wordsToReplace.length;j++) {
-			re = new RegExp(wordsToReplace[j], "g");
-			image_name = image_name.replace(re, "_");
-		}
-		receipt.image = image_name;
-
-		if (receipt.ingredients) {
-			receipt.ingredients = receipt.ingredients.replace(/-|\+/g,'</br><input type="checkbox">');
-		}
-	}
-
-	return receipts;
 }
 
 // data structure: {"id": 1, "nombre":"pittige varkenhaas", "category":"carne"}
@@ -123,7 +102,6 @@ var renderView = function(e) {
 	if (type === "todo" || type === "add" || type === "lista") {
 		receipts.toggleClass('hide', type !== "todo");
 		addForm.toggleClass('hide', type !== "add");
-		purchaseListWrapper.toggleClass('hide', type !== "lista");
 	} else if (type === "weekly_menu") {
 		weeklyMenu.init();
 	} else if (type === "new") {
@@ -208,19 +186,6 @@ function showIngredients(event) {
 
 }
 
-function hideIngredients(){
-	$('#ingredients_text').empty();
-}
-
-function addIngredientsToPurchaseList(event) {
-	var items = $(event.target).siblings('.ingredients_list').find('input:checked').html();
-	purchaseList += items;
-	var template = $('#purchase_list_template').html();
-	Mustache.parse(template);   // optional, speeds up future uses
-	var rendered = Mustache.render(template,{'purchaseList': purchaseList});
-	purchaseListWrapper.html(rendered);
-}
-
 function promptUrlField(event) {
 	event.preventDefault();
 	var url = prompt("introduce la url de la receta");
@@ -285,6 +250,26 @@ function applyFilters(e) {
 
 }
 
+function filterByName(e) {
+
+	var value = $(e.target).val().toLowerCase();
+	if (value === "") {
+		return;
+	}
+
+	var re = new RegExp(value,'g');
+
+	if (receipts.length === 0) {
+		receipts = $('.receipt');
+	}
+
+	receipts.addClass('hide').filter(function() {
+		var name = $(this).find('.receipt_name').text().trim().toLowerCase();
+		return re.test(name);
+	}).removeClass('hide');
+
+}
+
 function attachEvents() {
 	$('#receipt_list')
 		.on('touchstart', '.receipt', onTouchStart)
@@ -295,9 +280,9 @@ function attachEvents() {
 		.on('click', '.choose_receipt', weeklyMenu.onSelect.bind(weeklyMenu));
 
 	$('#type_selector').on('click','a', renderView);
-	$('#ingredients_text')
-		.on('click','.ingredients_close_button',hideIngredients)
-		.on('click','.ingredients_submit_button',addIngredientsToPurchaseList);
+
+	inputFilter.on('keyup',filterByName);
+
 	footer
 		.on('click','button', toggleFiltersModal)
 		.on('click','.meal_filter input', applyFilters)
