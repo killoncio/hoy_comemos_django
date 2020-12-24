@@ -6,7 +6,22 @@ from django.utils import timezone
 # Create your views here.
 
 def index(request):
-	meals_list = Meal.objects.order_by('name')
+	categories = [
+		'verduras',
+		'carne',
+		'pasta',
+		'pescado',
+		'guiso',
+		'especial',
+		'postre',
+	]
+
+	meals_list = []
+
+	for category in categories:
+		list = Meal.objects.filter(category = category)
+		meals_list.extend(list)
+
 	meals_dict = {'meals_list': meals_list}
 
 	return render(request,'app/index.html',context=meals_dict)
