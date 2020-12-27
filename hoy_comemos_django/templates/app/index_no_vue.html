@@ -12,13 +12,37 @@
 	<input class="js-autocomplete form-control" type="text">
 </div>
 
+	{% if meals_list %}
 	<ul id="receipt_list">
-		<receipt-item
-			v-for="receipt in receipts"
-			:key="receipt.id"
-			:receipt="receipt">
-		</receipt-item>
+	{% for meal in meals_list %}
+		<li id={{ meal.id }}
+			class='receipt {% if meal.is_new %}receipt_new{% endif %}'
+			data-category={{ meal.category }}
+			draggable="true">
+			<div class="receipt_name">
+				<a class="text-primary" href="{% url 'app:meal' meal.id %}" target='_blank'><strong>{{ meal.name|title }}</strong></a>
+
+			{% if meal.ingredients %}
+				<span class="glyphicon glyphicon glyphicon-menu-right ingredients_trigger	" aria-hidden="true"></span>
+			{% endif %}
+			</div>
+			<div class='receipt_image img-wrapper'style="position: relative">
+	    		<img class='img-responsive'
+	    			src="{{ meal.image.url }}"
+	    			alt="Uh Oh, didn't show!"
+	    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
+			</div>
+			<div class="receipt_ingredients hide">
+				{{ meal.ingredients|linebreaks }}
+			</div>
+		</li>
+    {% endfor %}
 	</ul>
+
+	{% else %}
+	<h2> No hay comidas </h2>h2>
+	{% endif %}
+
 </div>
 </div>
 </div>
