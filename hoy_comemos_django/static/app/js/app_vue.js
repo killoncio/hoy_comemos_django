@@ -7,17 +7,17 @@ Vue.component('receipt-item', {
   		draggable="true"
   	>
 		<div class="receipt_name">
-			<a class="text-primary" href="{% url 'app:meal' meal.id %}" target='_blank'><strong>[[receipt.name]]</strong></a>
+			<a class="text-primary" href="{% url 'app:meal' meal.id %}" target='_blank'><strong>{{receipt.name}}</strong></a>
 			<span v-if="receipt.ingredients" class="glyphicon glyphicon glyphicon-menu-right ingredients_trigger" aria-hidden="true"></span>
 		</div>
 		<div class='receipt_image img-wrapper' style="position: relative">
     		<img class='img-responsive'
-    			src="[[ receipt.image.url ]]"
+    			:src="receipt.image.url"
     			alt="Uh Oh, didn't show!"
-    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
+    		>
 		</div>
 		<div class="receipt_ingredients hide">
-			[[ receipt.ingredients ]]
+			{{receipt.ingredients}}
 		</div>
 	</li>
   	`
