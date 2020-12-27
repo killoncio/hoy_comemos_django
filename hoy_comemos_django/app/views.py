@@ -1,11 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from app.models import Meal, Dates
 from .forms import MealForm, DateForm
-from django.utils import timezone
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
+from django.core.serializers.json import DjangoJSONEncoder
+from django.db.models.fields.files import ImageFieldFile
 
 # Create your views here.
 
 def index(request):
+	# Could not think of a different way to sorter results as I wanted
 	categories = [
 		'verduras',
 		'carne',
@@ -25,6 +29,28 @@ def index(request):
 	meals_dict = {'meals_list': meals_list}
 
 	return render(request,'app/index.html',context=meals_dict)
+
+# Django does not handle properly image encoding, so it needs custom function
+# https://stackoverflow.com/questions/7497138/how-do-i-serialize-an-imagefield-in-django
+class ImageEncoder(DjangoJSONEncoder):
+	def default(self,obj):
+	    if isinstance(obj, ImageFieldFile):
+	        try:
+	            return obj.path
+	        except ValueError:
+	            return ''
+
+	    raise TypeError(repr(obj) + " is not JSON serializable")
+
+def get_meals(self):
+	data = Meal.objects.all()
+	response = {}
+	# need dict instead of models for the json encoder to work
+	count = 0
+	for item in data:
+		response[count] = model_to_dict(item)
+		count+=1
+	return JsonResponse(response, safe=False, encoder=ImageEncoder)
 
 def add_meal(request):
 	form = MealForm()

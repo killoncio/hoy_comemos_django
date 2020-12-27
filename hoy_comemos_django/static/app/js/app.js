@@ -42,7 +42,7 @@ var weeklyMenu = {
 		this.dayIndex++;
 		this.currentDate.setDate(this.currentDate.getDate() + 1);
 
-		if (this.dayIndex < this.daylyCategory.length) { 
+		if (this.dayIndex < this.daylyCategory.length) {
 			// show next day/category to choose meal
 			this.render();
 		} else {
@@ -78,7 +78,7 @@ var weeklyMenu = {
 	        data: data
 	    }).done(function(data){
 	    	// todo: show success or error message
-	    	// todo: change icon 
+	    	// todo: change icon
 			console.log("done");
 	    });
 	},
@@ -95,7 +95,7 @@ var renderView = function(e) {
 
 	if (receipts.length === 0) {
 		receipts = $('.receipt');
-	}	
+	}
 
 	button.closest('li').addClass('active').siblings('.active').removeClass('active');
 
@@ -206,7 +206,7 @@ function saveUrl(id, url) {
         }
     }).done(function(data){
     	// todo: show success or error message
-    	// todo: change icon 
+    	// todo: change icon
 		console.log("url " + url + " saved in id " + id);
     });
 }
@@ -214,7 +214,7 @@ function saveUrl(id, url) {
 function getFiltersModalHeight() {
 	if (!filtersModalHeight) {
 		filtersModalHeight = $('.footer ul').innerHeight() - 10;
-	} 
+	}
 
 	return filtersModalHeight;
 }
@@ -241,7 +241,7 @@ function applyFilters(e) {
 	if (selectedFilters.length > 0) {
 		receipts.addClass('hide').filter(function() {
 			for (var i=0; i < selectedFilters.length; i++) {
-				return $(this).data('category') === selectedFilters[i] 
+				return $(this).data('category') === selectedFilters[i]
 			}
 		}).removeClass('hide');
 	} else {
@@ -285,7 +285,7 @@ function attachEvents() {
 
 	footer
 		.on('click','button', toggleFiltersModal)
-		.on('click','.meal_filter input', applyFilters)
+		.on('click','.meal_filter input', applyFilters);
 }
 
 function init() {
@@ -301,11 +301,11 @@ var helper = {
 		var yyyy = day.getFullYear();
 		if (dd < 10) {
 		  dd = '0' + dd;
-		} 
+		}
 		if (mm < 10) {
 		  mm = '0' + mm;
-		} 
-		
+		}
+
 		return dd + '/' + mm + '/' + yyyy;
 	}
 }
