@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from app.models import Meal, Dates
-from .forms import MealForm, DateForm
+from .forms import MealForm, DateForm, CadeauForm
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models.fields.files import ImageFieldFile
+from django.contrib import messages
 
 # Create your views here.
 
@@ -108,4 +109,19 @@ def meal(request,id):
 
 	return render(request,'app/meal.html',context=meal_dict)
 
+def cadeau(request):
+	form = CadeauForm()
 
+	if request.method == "POST":
+		form = CadeauForm(request.POST)
+		if form.is_valid():
+			cadeau = form.save(commit=False)
+			name = cadeau.name
+			child = cadeau.child
+			success_message = "Wow! Dank je wel " + name + ", van " + child
+			form.save(commit=True)
+			messages.success(request, success_message)
+		else:
+			print('ERROR FORM INVALID')
+
+	return render(request,'app/cadeau.html',{'form':form})

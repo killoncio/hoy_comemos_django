@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.core import validators
-from app.models import Meal, Dates
+from app.models import Meal, Dates, Cadeau
 
 class MealForm(ModelForm):
 	class Meta:
@@ -19,3 +19,13 @@ class DateForm(ModelForm):
 	class Meta:
 		model = Dates
 		exclude = ['date','name']
+
+class CadeauForm(ModelForm):
+	class Meta:
+		model = Cadeau
+		labels = {
+			'name': 'Wie ben jij?',
+			'child': 'Kind',
+			'amount': 'How veel',
+		}
+		fields = '__all__'
