@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -87,6 +88,6 @@ class Cadeau(models.Model):
     name = models.CharField(default="",max_length=264, choices=adults_names, blank = True)
     child = models.CharField(default="",max_length=264, choices=children_names, blank = True)
     amount = models.IntegerField(default="",choices=cadeau_amount)
-
+    date = models.DateField(default=timezone.now)
     def __str__(self):
         return self.name

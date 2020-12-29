@@ -28,4 +28,4 @@ class CadeauForm(ModelForm):
 			'child': 'Kind',
 			'amount': 'How veel',
 		}
-		fields = '__all__'
+		exclude = ['date']

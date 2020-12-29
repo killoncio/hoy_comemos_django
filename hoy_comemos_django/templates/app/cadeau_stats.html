@@ -79,7 +79,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 				<p> {{child}} </p>
 				<ul class="cadeaus_list">
 				{% for cadeau in cadeaus %}
-				<li> {{cadeau.amount}} from {{cadeau.name}}</li>
+				<li> {{cadeau.amount}} from {{cadeau.name}} on {{cadeau.time}}</li>
     			{% endfor %}
     			</ul>
     		{% endfor %}
