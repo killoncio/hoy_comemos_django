@@ -8,7 +8,7 @@ Vue.component('receipt-item', {
 			draggable="true"
 		>
 		<div class="receipt_name">
-			<a class="text-primary" href="{% url 'app:meal' meal.id %}" target='_blank'><strong>[[receipt.name]]</strong></a>
+			<a class="text-primary" :href="'app/meal/' + [[receipt.id]]" target='_blank'><strong>[[receipt.name]]</strong></a>
 			<span v-if="receipt.ingredients" class="glyphicon glyphicon glyphicon-menu-right ingredients_trigger" aria-hidden="true"></span>
 		</div>
 		<div class='receipt_image img-wrapper' style="position: relative">
