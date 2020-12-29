@@ -64,14 +64,24 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 	<div class="container">
 		<div class="content">
 
+		{% if totals %}
+			<p> Totals</p>
+			<ul>
+			{% for child, total in totals.items %}
+				<li>{{child}} : {{total}}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+
 		{% if cadeaus_list %}
-			<ul id="cadeaus_list">
 <!-- 			{{ cadeaus_list }}
  -->			{% for child, cadeaus in cadeaus_list.items %}
-				--- {{child}} ---
+				<p> {{child}} </p>
+				<ul class="cadeaus_list">
 				{% for cadeau in cadeaus %}
 				<li> {{cadeau.amount}} from {{cadeau.name}}</li>
     			{% endfor %}
+    			</ul>
     		{% endfor %}
 			</ul>
 		{% endif %}

@@ -139,10 +139,22 @@ def cadeau_stats(request):
 		'Alex':[],
 	}
 
+	totals = {
+		'Luka':0,
+		'David':0,
+		'Alex':0
+	}
+
 	for child in children:
 		list = Cadeau.objects.filter(child = child)
 		cadeaus_list[child].extend(list)
+		# calculate and store total amount
+		for cadeau in list:
+			totals[child] += cadeau.amount
 
-	cadeaus_dict = {'cadeaus_list': cadeaus_list}
+	cadeaus_dict = {
+		'cadeaus_list': cadeaus_list,
+		'totals': totals,
+	}
 
 	return render(request,'app/cadeau_stats.html',context=cadeaus_dict)
