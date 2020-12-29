@@ -28,7 +28,7 @@ def index(request):
 
 	meals_dict = {'meals_list': meals_list}
 
-	return render(request,'app/index_no_vue.html',context=meals_dict)
+	return render(request,'app/index.html',context=meals_dict)
 
 # Django does not handle properly image encoding, so it needs custom function
 # https://stackoverflow.com/questions/7497138/how-do-i-serialize-an-imagefield-in-django
@@ -36,7 +36,7 @@ class ImageEncoder(DjangoJSONEncoder):
 	def default(self,obj):
 	    if isinstance(obj, ImageFieldFile):
 	        try:
-	            return obj.path
+	            return obj.url
 	        except ValueError:
 	            return ''
 
