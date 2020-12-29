@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from app.models import Meal, Dates
+from app.models import Meal, Dates, Cadeau
 from .forms import MealForm, DateForm, CadeauForm
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
@@ -125,3 +125,24 @@ def cadeau(request):
 			print('ERROR FORM INVALID')
 
 	return render(request,'app/cadeau.html',{'form':form})
+
+def cadeau_stats(request):
+	children = [
+		'Luka',
+		'David',
+		'Alex',
+	]
+
+	cadeaus_list = {
+		'Luka':[],
+		'David':[],
+		'Alex':[],
+	}
+
+	for child in children:
+		list = Cadeau.objects.filter(child = child)
+		cadeaus_list[child].extend(list)
+
+	cadeaus_dict = {'cadeaus_list': cadeaus_list}
+
+	return render(request,'app/cadeau_stats.html',context=cadeaus_dict)

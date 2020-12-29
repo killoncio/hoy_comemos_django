@@ -51,7 +51,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-toggle="collapse" data-target=".navbar-collapse.in">
       <ul class="nav navbar-nav" id="type_selector">
-		<li role="presentation" class="active"><a href="#" data-type="todo">Cadeau</a></li>
+		<li role="presentation" class="active"><a href={% url 'app:cadeau' %} data-type="todo">Cadeau</a></li>
 		<li role="presentation"><a href={% url 'app:cadeau_stats' %}> Stats </a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -64,27 +64,17 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 	<div class="container">
 		<div class="content">
 
-		{{ form.non_field_errors }}
-		{% if messages %}
-		  {% for message in messages %}
-		  <h3{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
-		  {% endfor %}
+		{% if cadeaus_list %}
+			<ul id="cadeaus_list">
+<!-- 			{{ cadeaus_list }}
+ -->			{% for child, cadeaus in cadeaus_list.items %}
+				--- {{child}} ---
+				{% for cadeau in cadeaus %}
+				<li> {{cadeau.amount}} from {{cadeau.name}}</li>
+    			{% endfor %}
+    		{% endfor %}
+			</ul>
 		{% endif %}
-		<form method="POST">
-			{% csrf_token %}
-			{% for field in form %}
-			    <div class="form-group">
-			        {{ field.errors }}
-			        {{ field.label_tag }}
-			        {{ field }}
-			        {% if field.help_text %}
-			        <p class="help">{{ field.help_text|safe }}</p>
-			        {% endif %}
-			    </div>
-			{% endfor %}
-			<input type="submit" class="btn btn-primary btn-block" value="Doe het!">
-
-		</form>
 
 		</div>
 	</div>
