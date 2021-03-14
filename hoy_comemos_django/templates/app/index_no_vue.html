@@ -30,7 +30,8 @@
 	    		<img class='img-responsive'
 	    			src="{{ meal.image.url }}"
 	    			alt="Uh Oh, didn't show!"
-	    			onerror="this.onerror=null;this.src='{% static "app/images/placeholder.jpg" %}';">
+	    			onerror="this.onerror=null;this.src='media/images/placeholder.jpg';"
+	    		>
 			</div>
 			<div class="receipt_ingredients hide">
 				{{ meal.ingredients|linebreaks }}
@@ -40,7 +41,7 @@
 	</ul>
 
 	{% else %}
-	<h2> No hay comidas </h2>h2>
+	<h2> No hay comidas </h2>
 	{% endif %}
 
 </div>
@@ -80,4 +81,8 @@
     </div>
 
 </div>
+{% endblock %}
+
+{% block script_block %}
+	<script type="text/javascript" src="{% static "app/js/app.js" %}"></script>
 {% endblock %}
