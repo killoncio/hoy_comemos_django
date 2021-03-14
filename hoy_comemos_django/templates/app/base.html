@@ -45,13 +45,12 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <h1 class="navbar-brand">Qué comemos hoy?</h1>
+      <h1 class="navbar-brand"><a href="/">Qué comemos hoy?</a></h1>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-toggle="collapse" data-target=".navbar-collapse.in">
       <ul class="nav navbar-nav" id="type_selector">
-		<li role="presentation" class="active"><a href="#" data-type="todo">Todo</a></li>
 		<li role="presentation"><a href="#" data-type="weekly_menu">Hacer menu</a></li>
 		<li role="presentation"><a href={% url 'app:add_meal' %}> + </a></li>
 		<li role="presentation"><a href="#" data-type="lista">Lista</a></li>
