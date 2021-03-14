@@ -35,6 +35,7 @@ class Meal(models.Model):
     is_new = models.BooleanField(default=True, blank = True)
     image_name = models.CharField(default="",max_length=264, blank = True)
     image = models.ImageField(upload_to='images', blank = True)
+    is_preferred = models.BooleanField(default=False, blank = True)
 
     def __str__(self):
         return self.name

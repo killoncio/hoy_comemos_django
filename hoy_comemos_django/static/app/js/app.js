@@ -232,6 +232,7 @@ function applyFilters(e) {
 
 	var filter = $(e.target).data('category');
 
+	// multifiltering supported
 	if (selectedFilters.indexOf(filter) > -1) {
 		selectedFilters.splice(selectedFilters.indexOf(filter),1)
 	} else {
@@ -241,7 +242,7 @@ function applyFilters(e) {
 	if (selectedFilters.length > 0) {
 		receipts.addClass('hide').filter(function() {
 			for (var i=0; i < selectedFilters.length; i++) {
-				return $(this).data('category') === selectedFilters[i]
+				return ( $(this).data('category') === selectedFilters[i] || $(this).data('preferred') === selectedFilters[i] )
 			}
 		}).removeClass('hide');
 	} else {
