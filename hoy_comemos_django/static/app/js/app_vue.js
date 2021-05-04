@@ -35,7 +35,31 @@ var vm = new Vue({
 		fetch('app/ajax/get_meals/')
 			.then(response => response.json())
 			.then(function(data) {
-				vm.receipts = data;
+				vm.receipts = vm.sortReceipts(data);
 			});
+	},
+	methods: {
+		sortReceipts: (data) => {
+			const receiptsByCategories = {};
+
+			Object.values(data).map(receipt => {
+				if (!receiptsByCategories[receipt.category]) {
+					receiptsByCategories[receipt.category] = [];
+				}
+				receiptsByCategories[receipt.category].push(receipt);
+			});
+
+			const categoryOrder = [
+				'carne',
+				'guiso',
+				'pasta',
+				'especial',
+				'pescado',
+				'verduras',
+				'postre',
+			];
+
+			return categoryOrder.reduce((prev, curr) => prev.concat(receiptsByCategories[curr]), []);
+		},
 	},
 });
