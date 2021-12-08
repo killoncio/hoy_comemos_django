@@ -233,17 +233,16 @@ function applyFilters(e) {
 	var filter = $(e.target).data('category');
 
 	// multifiltering supported
+	// if filter is already in selection, deselect. Otherwise, add it to selection.
 	if (selectedFilters.indexOf(filter) > -1) {
-		selectedFilters.splice(selectedFilters.indexOf(filter),1)
+		selectedFilters.splice(selectedFilters.indexOf(filter),1);
 	} else {
-		selectedFilters.push(filter)
+		selectedFilters.push(filter);
 	}
 
 	if (selectedFilters.length > 0) {
 		receipts.addClass('hide').filter(function() {
-			for (var i=0; i < selectedFilters.length; i++) {
-				return ( $(this).data('category') === selectedFilters[i] || $(this).data('preferred') === selectedFilters[i] )
-			}
+			return selectedFilters.includes($(this).data('category')) || selectedFilters.includes($(this).data('preferred'));
 		}).removeClass('hide');
 	} else {
 		receipts.removeClass('hide');
@@ -286,7 +285,7 @@ function attachEvents() {
 
 	footer
 		.on('click','button', toggleFiltersModal)
-		.on('click','.meal_filter input', applyFilters);
+		.on('click','.meals-filter input', applyFilters);
 }
 
 function init() {
