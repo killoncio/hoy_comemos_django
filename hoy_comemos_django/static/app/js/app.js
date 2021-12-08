@@ -12,7 +12,7 @@ var inputFilter = $('.js-autocomplete');
 function render(template, dataObject) {
 	Mustache.parse(template);   // optional, speeds up future uses
 	var rendered = Mustache.render(template, dataObject);
-	$('#receipt_list').html(rendered);
+	$('#meals-list').html(rendered);
 }
 
 // data structure: {"id": 1, "nombre":"pittige varkenhaas", "category":"carne"}
@@ -119,7 +119,7 @@ function showRandomElement() {
 
 
 
-var dropzone = $('#receipt_list'),
+var dropzone = $('#meals-list'),
     leftOffset = 0,
     leftX = 0,
     overallMovement = 0;
@@ -272,7 +272,7 @@ function filterByName(e) {
 }
 
 function attachEvents() {
-	$('#receipt_list')
+	$('#meals-list')
 		.on('touchstart', '.receipt', onTouchStart)
 		.on('touchmove', '.receipt', onTouchMove)
 		.on('touchend', '.receipt', onTouchEnd)

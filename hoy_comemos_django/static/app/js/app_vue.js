@@ -8,15 +8,17 @@ Vue.component('receipt-item', {
 			:data-preferred="[[ receipt.is_preferred ? 'preferred' : '']]"
 			draggable="true"
 		>
-		<div class="receipt_name">
-			<a class="text-primary" :href="'app/meal/' + [[receipt.id]]" target='_blank'><strong>[[receipt.name]]</strong></a>
-			<span v-if="receipt.ingredients" class="glyphicon glyphicon glyphicon-menu-right ingredients_trigger" aria-hidden="true"></span>
-		</div>
 		<div class='receipt_image img-wrapper' style="position: relative">
 			<img class='img-responsive'
 				:src="[[receipt.image]]"
 				alt="Uh Oh, didn't show!"
 			>
+		</div>
+		<div class="receipt_name">
+			<a class="text-primary" :href="'app/meal/' + [[receipt.id]]" target='_blank'>
+				[[receipt.name]]
+			</a>
+			<span v-if="receipt.ingredients" class="glyphicon glyphicon glyphicon-menu-right ingredients_trigger" aria-hidden="true"></span>
 		</div>
 		<div class="receipt_ingredients hide">
 			[[receipt.ingredients]]
@@ -27,7 +29,7 @@ Vue.component('receipt-item', {
 
 var vm = new Vue({
 	delimiters: ['[[', ']]'],
- 	el: '#receipt_list',
+ 	el: '#meals-list',
 	data: {
   		'receipts': [],
 	},
@@ -40,13 +42,13 @@ var vm = new Vue({
 	},
 	methods: {
 		sortReceipts: (data) => {
-			const receiptsByCategories = {};
+			const receiptsByCategory = {};
 
 			Object.values(data).map(receipt => {
-				if (!receiptsByCategories[receipt.category]) {
-					receiptsByCategories[receipt.category] = [];
+				if (!receiptsByCategory[receipt.category]) {
+					receiptsByCategory[receipt.category] = [];
 				}
-				receiptsByCategories[receipt.category].push(receipt);
+				receiptsByCategory[receipt.category].push(receipt);
 			});
 
 			const categoryOrder = [
@@ -59,7 +61,7 @@ var vm = new Vue({
 				'postre',
 			];
 
-			return categoryOrder.reduce((prev, curr) => prev.concat(receiptsByCategories[curr]), []);
+			return categoryOrder.reduce((prev, curr) => prev.concat(receiptsByCategory[curr]), []);
 		},
 	},
 });

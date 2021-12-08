@@ -13,7 +13,7 @@
 </div>
 
 	{% if meals_list %}
-	<ul id="receipt_list">
+	<ul id="meals-list">
 	{% for meal in meals_list %}
 		<li id={{ meal.id }}
 			class='receipt {% if meal.is_new %}receipt_new{% endif %}'

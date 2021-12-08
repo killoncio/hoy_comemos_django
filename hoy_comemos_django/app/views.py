@@ -10,7 +10,7 @@ from django.contrib import messages
 # Create your views here.
 
 def index(request):
-	# Could not think of a different way to sorter results as I wanted
+	# Could not think of a different way to sort results as I wanted
 	categories = [
 		'verduras',
 		'carne',

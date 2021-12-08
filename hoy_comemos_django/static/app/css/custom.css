@@ -5,13 +5,12 @@
 }
 
 ul {
-    font-size: 18px;
+    font-size: 16px;
     padding: 0px;
 
 }
 
 li {
-    padding-left: 20px;
     list-style: none;
 /*    border-bottom: 1px solid white;
 */}
@@ -25,19 +24,21 @@ li ul li:last {
 }
 
 li.receipt, .input_autocomplete {
-    padding-left: 20px;
-    padding-right: 20px;
+    margin:  5px;
     margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 5px;
 }
 
-
+.meals-list-container {
+    background-color: #ededed;
+}
 
 .receipt .img-wrapper {
     height: 200px;
     overflow: hidden;
-    background-color: #e7f0f9;
+    background-color: #ffffff;
 }
-
 
 .task.done {
     text-decoration: line-through;

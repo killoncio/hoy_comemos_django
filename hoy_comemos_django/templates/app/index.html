@@ -4,24 +4,24 @@
 {% load static %}
 
 {% block body_block %}
-<section id="productos" class="about-section section-first">
-<div class="container">
-<div class="row">
-<div class="content-boxes-v6">
-<div class="form-group input_autocomplete">
-	<input class="js-autocomplete form-control" type="text">
-</div>
+<section id="productos" class="meals-list-container">
+	<div class="container">
+		<div class="row">
+			<div class="content-boxes-v6">
+				<div class="form-group input_autocomplete">
+					<input class="js-autocomplete form-control" type="text">
+				</div>
 
-<ul id="receipt_list">
-	<receipt-item
-	        v-for="receipt in receipts"
-	        :key="receipt.id"
-	        :receipt="receipt">
-	</receipt-item>
-</ul>
-</div>
-</div>
-</div>
+				<ul id="meals-list">
+					<receipt-item
+					        v-for="receipt in receipts"
+					        :key="receipt.id"
+					        :receipt="receipt">
+					</receipt-item>
+				</ul>
+			</div>
+		</div>
+	</div>
 </section>
 
 <footer class="footer">
