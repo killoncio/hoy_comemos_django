@@ -273,9 +273,9 @@ function filterByName(e) {
 
 function attachEvents() {
 	$('#meals-list')
-		.on('touchstart', '.receipt', onTouchStart)
-		.on('touchmove', '.receipt', onTouchMove)
-		.on('touchend', '.receipt', onTouchEnd)
+		// .on('touchstart', '.receipt', onTouchStart) // after last css changes, this does not behave that well, disabling it, maybe I'll fix it later
+		// .on('touchmove', '.receipt', onTouchMove)
+		// .on('touchend', '.receipt', onTouchEnd)
 		.on('click', '.ingredients_trigger', showIngredients)
 		.on('click', '.url_set', promptUrlField)
 		.on('click', '.choose_receipt', weeklyMenu.onSelect.bind(weeklyMenu));
