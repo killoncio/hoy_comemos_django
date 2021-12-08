@@ -11,7 +11,7 @@ Vue.component('receipt-item', {
 		<div class='receipt_image img-wrapper' style="position: relative">
 			<img class='img-responsive'
 				:src="[[receipt.image]]"
-				alt="Uh Oh, didn't show!"
+				:alt="[[receipt.name]]"
 				onerror="this.src='/media/images/placeholder.jpg';"
 			>
 		</div>
