@@ -14,9 +14,10 @@
 				<ul id="menu">
 					<h3>Menu</h3>
 					<menu-item
-						v-for="meal in menu"
+						v-for="(meal, index) in menu"
 						:meal="meal"
-						@get-new-meal="getRandomElement($event)"
+						:id="index"
+						@get-new-meal="getNewMeal($event, index)"
 					>
 				</ul>
 				<ul id="meals-list">

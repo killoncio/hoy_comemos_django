@@ -34,8 +34,8 @@ Vue.component('menu-item', {
 	emits:['get-new-meal'],
 	template:`
 		<li>
-			[[meal]]
-			<button @click="$emit('get-new-meal', 'guiso')">New</button>
+			[[meal.name]]
+			<button @click="$emit('get-new-meal', meal.category)">New</button>
 		</li>
 	`
 });
@@ -114,7 +114,12 @@ var vm = new Vue({
 				return `no hay un plato preferido en la categoria ${category}`;
 			}
 
-			return preferred[getRandomIndex(preferred.length)].name;
+			return preferred[getRandomIndex(preferred.length)];
+		},
+		getNewMeal(category, index) {
+			const newMeal = vm.getRandomElement(category);
+
+			vm.menu[index] = newMeal;
 		},
 	},
 });
