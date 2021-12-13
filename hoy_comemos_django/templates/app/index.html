@@ -7,11 +7,17 @@
 <section class="meals-list-container">
 	<div class="container">
 		<div class="row">
-			<div class="content-boxes-v6">
+			<div id="app" class="content-boxes-v6">
 				<div class="form-group input_autocomplete">
 					<input class="js-autocomplete form-control" type="text">
 				</div>
-
+				<ul id="menu">
+					<h3>Menu</h3>
+					<menu-item
+						v-for="meal in menu"
+						:meal="meal"
+					>
+				</ul>
 				<ul id="meals-list">
 					<receipt-item
 					        v-for="receipt in receipts"

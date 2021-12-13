@@ -28,17 +28,30 @@ Vue.component('receipt-item', {
 		`
 });
 
+Vue.component('menu-item', {
+	delimiters: ['[[', ']]'],
+	props: ['meal'],
+	template:`
+		<li>
+			[[meal]]
+		</li>
+	`
+});
+
+
 var vm = new Vue({
 	delimiters: ['[[', ']]'],
- 	el: '#meals-list',
+ 	el: '#app',
 	data: {
   		'receipts': [],
+  		'menu':[],
 	},
 	mounted: function() {
 		fetch('app/ajax/get_meals/')
 			.then(response => response.json())
 			.then(function(data) {
 				vm.receipts = vm.sortReceipts(data);
+				vm.menu = vm.createMenu(data);
 			});
 	},
 	methods: {
@@ -63,6 +76,43 @@ var vm = new Vue({
 			];
 
 			return categoryOrder.reduce((prev, curr) => prev.concat(receiptsByCategory[curr]), []);
+		},
+		createMenu: (data) => {
+			const receiptsByCategory = {};
+
+			Object.values(data).map(receipt => {
+				if (!receipt.is_preferred) {
+					return false;
+				}
+				if (!receiptsByCategory[receipt.category]) {
+					receiptsByCategory[receipt.category] = [];
+				}
+				receiptsByCategory[receipt.category].push(receipt);
+			});
+
+			function getRandomIndex(max) {
+				return Math.floor(Math.random() * max);
+			}
+
+			function getRandomElement(category) {
+				if (!receiptsByCategory[category]) {
+					return `no hay un plato preferido en la categoria ${category}`;
+				}
+
+				return receiptsByCategory[category][getRandomIndex(receiptsByCategory[category].length)].name;
+			}
+
+			const menu = [
+				'sopa',
+				getRandomElement('guiso'),
+				getRandomElement('pasta'),
+				getRandomElement('carne'),
+				'pizza',
+				getRandomElement('pescado'),
+				getRandomElement('pasta'),
+			];
+
+			return menu;
 		},
 	},
 });
