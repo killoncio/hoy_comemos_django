@@ -16,6 +16,7 @@
 					<menu-item
 						v-for="meal in menu"
 						:meal="meal"
+						@get-new-meal="getRandomElement($event)"
 					>
 				</ul>
 				<ul id="meals-list">

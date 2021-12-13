@@ -31,9 +31,11 @@ Vue.component('receipt-item', {
 Vue.component('menu-item', {
 	delimiters: ['[[', ']]'],
 	props: ['meal'],
+	emits:['get-new-meal'],
 	template:`
 		<li>
 			[[meal]]
+			<button @click="$emit('get-new-meal', 'guiso')">New</button>
 		</li>
 	`
 });
@@ -45,6 +47,7 @@ var vm = new Vue({
 	data: {
   		'receipts': [],
   		'menu':[],
+  		'receiptsByCategory': {},
 	},
 	mounted: function() {
 		fetch('app/ajax/get_meals/')
@@ -56,12 +59,13 @@ var vm = new Vue({
 	},
 	methods: {
 		sortReceipts: (data) => {
-			const receiptsByCategory = {};
+			const receiptsByCategory = vm.receiptsByCategory;
 
 			Object.values(data).map(receipt => {
 				if (!receiptsByCategory[receipt.category]) {
 					receiptsByCategory[receipt.category] = [];
 				}
+
 				receiptsByCategory[receipt.category].push(receipt);
 			});
 
@@ -84,43 +88,33 @@ var vm = new Vue({
 			// - be able to refresh per day
 			// - keep menu for a week, do not create new one on each reload (maybe store it locally, just redo if button clicked)
 			// - maybe show the rest of unchosen meals, so it's possible to choose manually?
-			//
-			const receiptsByCategory = {};
+			// -
+			const menu = [
+				'sopa',
+				vm.getRandomElement('guiso'),
+				vm.getRandomElement('pasta'),
+				vm.getRandomElement('carne'),
+				'pizza',
+				vm.getRandomElement('pescado'),
+				vm.getRandomElement('pasta'),
+			];
 
-			Object.values(data).map(receipt => {
-				if (!receipt.is_preferred) {
-					return false;
-				}
-				if (!receiptsByCategory[receipt.category]) {
-					receiptsByCategory[receipt.category] = [];
-				}
-				receiptsByCategory[receipt.category].push(receipt);
-			});
-
+			return menu;
+		},
+		getRandomElement(category) {
 			function getRandomIndex(max) {
 				return Math.floor(Math.random() * max);
 			}
 
-			function getRandomElement(category) {
-				// local db does not have preferred ones, so adding this to avoid error
-				if (!receiptsByCategory[category]) {
-					return `no hay un plato preferido en la categoria ${category}`;
-				}
+			const preferred = vm.receiptsByCategory[category].filter(receipt => receipt.is_preferred);
 
-				return receiptsByCategory[category][getRandomIndex(receiptsByCategory[category].length)].name;
+
+			// local db does not have preferred ones, so adding this to avoid error
+			if (!preferred.length) {
+				return `no hay un plato preferido en la categoria ${category}`;
 			}
 
-			const menu = [
-				'sopa',
-				getRandomElement('guiso'),
-				getRandomElement('pasta'),
-				getRandomElement('carne'),
-				'pizza',
-				getRandomElement('pescado'),
-				getRandomElement('pasta'),
-			];
-
-			return menu;
+			return preferred[getRandomIndex(preferred.length)].name;
 		},
 	},
 });
