@@ -78,6 +78,13 @@ var vm = new Vue({
 			return categoryOrder.reduce((prev, curr) => prev.concat(receiptsByCategory[curr]), []);
 		},
 		createMenu: (data) => {
+			// creating weekly menu from the 'preferred' meals
+			// todo:
+			// - add it to a different page
+			// - be able to refresh per day
+			// - keep menu for a week, do not create new one on each reload (maybe store it locally, just redo if button clicked)
+			// - maybe show the rest of unchosen meals, so it's possible to choose manually?
+			//
 			const receiptsByCategory = {};
 
 			Object.values(data).map(receipt => {
@@ -95,6 +102,7 @@ var vm = new Vue({
 			}
 
 			function getRandomElement(category) {
+				// local db does not have preferred ones, so adding this to avoid error
 				if (!receiptsByCategory[category]) {
 					return `no hay un plato preferido en la categoria ${category}`;
 				}
