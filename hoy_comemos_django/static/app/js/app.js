@@ -4,7 +4,7 @@ var purchaseList = '';
 var chooseWeeklyMenuTemplate = $('#choose_weekly_menu_template').html();
 var mealsListTemplate = $('#meals_list_template').html();
 var footer = $('.footer');
-var selectedFilters = [];
+var selectedFilters = ['preferred']; // on load, only preferred meals are shown, and preferred input is checked
 var filtersModalHeight = 0;
 var filterVisible = false;
 var inputFilter = $('.js-autocomplete');
@@ -225,13 +225,7 @@ function toggleFiltersModal() {
 	filterVisible = !filterVisible
 }
 
-function applyFilters(e) {
-	if (receipts.length === 0) {
-		receipts = $('.receipt');
-	}
-
-	var filter = $(e.target).data('category');
-
+function toggleFilters(filter) {
 	// multifiltering supported
 	// if filter is already in selection, deselect. Otherwise, add it to selection.
 	if (selectedFilters.indexOf(filter) > -1) {
@@ -239,15 +233,23 @@ function applyFilters(e) {
 	} else {
 		selectedFilters.push(filter);
 	}
+}
+
+function applyFilters() {
+	if (receipts.length === 0) {
+		receipts = $('.receipt');
+	}
 
 	if (selectedFilters.length > 0) {
-		receipts.addClass('hide').filter(function() {
-			return selectedFilters.includes($(this).data('category')) || selectedFilters.includes($(this).data('preferred'));
-		}).removeClass('hide');
+		receipts.addClass('hide');
+		receipts
+			.filter(function() {
+				return selectedFilters.includes($(this).data('category')) || (selectedFilters.includes('preferred') && $(this).data('preferred') === 'preferred');
+			})
+			.removeClass('hide');
 	} else {
 		receipts.removeClass('hide');
 	}
-
 }
 
 function filterByName(e) {
@@ -285,14 +287,18 @@ function attachEvents() {
 
 	footer
 		.on('click','button', toggleFiltersModal)
-		.on('click','.meals-filter input', applyFilters);
+		.on('click','.meals-filter input', onClickFilter);
+}
+
+function onClickFilter(e) {
+	var filter = $(e.target).data('category');
+	toggleFilters(filter);
+	applyFilters();
 }
 
 function init() {
 	attachEvents();
 }
-
-init();
 
 var helper = {
 	getFormattedDay: function(day) {
@@ -309,4 +315,6 @@ var helper = {
 		return dd + '/' + mm + '/' + yyyy;
 	}
 }
+
+$(window).on('load', init);
 
