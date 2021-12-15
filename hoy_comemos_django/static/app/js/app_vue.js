@@ -3,7 +3,7 @@ Vue.component('receipt-item', {
 	props: ['receipt'],
 	template:`
 		<li
-			:class="{receipt: true, receipt__new: receipt.is_new}"
+			:class="{receipt: true, receipt__new: receipt.is_new, hide: !receipt.is_preferred}"
 			:data-category="receipt.category"
 			:data-preferred="[[ receipt.is_preferred ? 'preferred' : '']]"
 			draggable="true"
