@@ -33,7 +33,7 @@ Vue.component('menu-item', {
 	props: ['meal'],
 	emits:['get-new-meal'],
 	template:`
-		<li>
+		<li class="menu__meal">
 			[[meal.name || meal]]
 			<button @click="$emit('get-new-meal', meal.category)">New</button>
 		</li>

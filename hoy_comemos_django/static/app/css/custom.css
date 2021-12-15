@@ -40,6 +40,10 @@ li.receipt, .input_autocomplete {
     background-color: #ffffff;
 }
 
+.menu__meal {
+    margin: 5px;
+}
+
 .task.done {
     text-decoration: line-through;
     background-color: grey;
