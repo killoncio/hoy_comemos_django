@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block body_block %}
+<section class="meals-list-container">
+	<div class="container">
+		<div class="row">
+			<div id="app" class="content-boxes-v6">
+			</div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<button class="btn btn-primary btn-block">Filtrar</button>
+      	<ul class="nav navbar-nav meals-filter">
+      		<!-- If added new category, add it also to views.py -->
+			<li role="presentation"><input type="checkbox" data-category="verduras"> Verduras</input></li>
+			<li role="presentation"><input type="checkbox" data-category="carne"> Carne</input></li>
+			<li role="presentation"><input type="checkbox" data-category="pasta"> Pasta</input></li>
+			<li role="presentation"><input type="checkbox" data-category="pescado"> Pescado</input></li>
+			<li role="presentation"><input type="checkbox" data-category="guiso"> Guiso</input></li>
+			<li role="presentation"><input type="checkbox" data-category="especial"> Especial</input></li>
+			<li role="presentation"><input type="checkbox" data-category="postre"> Postre</input></li>
+			<li role="presentation"><input type="checkbox" data-category="new"> Nuevas </input></li>
+			<li role="presentation"><input type="checkbox" data-category="preferred"> Preferidas </input></li>
+      	</ul>
+	</div>
+</footer>
+
+<div class="ingredients_template js-ingredients_template hide">
+    <div class="modal-header">
+		<button type="button" class="close ingredients_close_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Ingredientes</h4>
+	</div>
+
+	<div class="modal-body ingredients_list">
+	</div>
+
+    <div class="modal-footer">
+<!-- 		<button type="button" class="btn btn-default ingredients_submit_button">Poner en lista</button> -->
+        <button type="button" class="btn btn-secondary ingredients_close_button" data-dismiss="modal">Cerrar</button>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block script_block %}
+
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+ 	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script type="text/javascript" src="{% static "app/js/app_react.js" %}"></script>
+	<script type="text/javascript" src="{% static "app/js/app.js" %}"></script>
+
+{% endblock %}
