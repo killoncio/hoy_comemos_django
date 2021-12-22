@@ -57,7 +57,7 @@ var vm = new Vue({
 			.then(response => response.json())
 			.then(function(data) {
 				vm.receipts = vm.sortReceipts(data);
-				vm.menu = vm.createMenu(data);
+				vm.loadMenu();
 			});
 	},
 	methods: {
@@ -84,7 +84,7 @@ var vm = new Vue({
 
 			return categoryOrder.reduce((prev, curr) => prev.concat(receiptsByCategory[curr]), []);
 		},
-		createMenu: (data) => {
+		loadMenu() {
 			// creating weekly menu from the 'preferred' meals
 			// todo:
 			// - add it to a different page
@@ -95,10 +95,13 @@ var vm = new Vue({
 			// -
 
 			if (window.localStorage.getItem('menu')) {
-				return JSON.parse(window.localStorage.getItem('menu'));
+				vm.menu = JSON.parse(window.localStorage.getItem('menu'));
+			} else {
+				this.createMenu();
 			}
-
-			return [
+		},
+		createMenu() {
+			vm.menu = [
 				'sopa',
 				vm.getRandomElement('guiso'),
 				vm.getRandomElement('pasta'),
