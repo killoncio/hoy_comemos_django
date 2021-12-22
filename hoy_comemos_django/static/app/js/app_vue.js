@@ -89,10 +89,16 @@ var vm = new Vue({
 			// todo:
 			// - add it to a different page
 			// - be able to refresh per day
+			// - add button to save
 			// - keep menu for a week, do not create new one on each reload (maybe store it locally, just redo if button clicked)
 			// - maybe show the rest of unchosen meals, so it's possible to choose manually?
 			// -
-			const menu = [
+
+			if (window.localStorage.getItem('menu')) {
+				return JSON.parse(window.localStorage.getItem('menu'));
+			}
+
+			return [
 				'sopa',
 				vm.getRandomElement('guiso'),
 				vm.getRandomElement('pasta'),
@@ -101,8 +107,6 @@ var vm = new Vue({
 				vm.getRandomElement('pescado'),
 				vm.getRandomElement('pasta'),
 			];
-
-			return menu;
 		},
 		getRandomElement(category) {
 			function getRandomIndex(max) {
@@ -127,6 +131,9 @@ var vm = new Vue({
 			newMenu[index] = newMeal;
 
 			vm.menu = newMenu;
+		},
+		saveMenu() {
+			window.localStorage.setItem('menu', JSON.stringify(vm.menu));
 		},
 	},
 });

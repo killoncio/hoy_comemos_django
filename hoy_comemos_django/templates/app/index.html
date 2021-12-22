@@ -11,14 +11,17 @@
 				<div class="form-group input_autocomplete">
 					<input class="js-autocomplete form-control" type="text">
 				</div>
-				<ul id="menu">
+				<div id="menu">
 					<h3>Menu</h3>
-					<menu-item
-						v-for="(meal, index) in menu"
-						:meal="meal"
-						:id="index"
-						@get-new-meal="getNewMeal($event, index)"
-					>
+					<ul>
+						<menu-item
+							v-for="(meal, index) in menu"
+							:meal="meal"
+							:id="index"
+							@get-new-meal="getNewMeal($event, index)"
+						>
+					</ul>
+					<button @click="saveMenu">Salvar</button>
 				</ul>
 				<ul id="meals-list">
 					<receipt-item
