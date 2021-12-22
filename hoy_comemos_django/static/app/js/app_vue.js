@@ -117,9 +117,13 @@ var vm = new Vue({
 			return preferred[getRandomIndex(preferred.length)];
 		},
 		getNewMeal(category, index) {
+			// in order to keep reactivity, you can't just substitute element of array
+			// one of the ways to solve that is replace the whole array https://vuejs.org/v2/guide/list.html#Replacing-an-Array
 			const newMeal = vm.getRandomElement(category);
+			const newMenu = vm.menu.slice();
+			newMenu[index] = newMeal;
 
-			vm.menu[index] = newMeal;
+			vm.menu = newMenu;
 		},
 	},
 });
