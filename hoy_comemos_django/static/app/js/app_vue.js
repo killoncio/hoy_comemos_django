@@ -30,10 +30,11 @@ Vue.component('receipt-item', {
 
 Vue.component('menu-item', {
 	delimiters: ['[[', ']]'],
-	props: ['meal'],
+	props: ['meal','day'],
 	emits:['get-new-meal'],
 	template:`
 		<li class="menu__meal">
+			[[day]]:
 			<a v-if="meal.name" :href="'app/meal/' + [[meal.id]]" target='_blank'>
 				[[meal.name]]
 			</a>
@@ -51,6 +52,7 @@ var vm = new Vue({
   		'receipts': [],
   		'menu':[],
   		'receiptsByCategory': {},
+  		'weekDay':['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'],
 	},
 	mounted: function() {
 		fetch('app/ajax/get_meals/')

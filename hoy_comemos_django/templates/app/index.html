@@ -17,6 +17,7 @@
 						<menu-item
 							v-for="(meal, index) in menu"
 							:meal="meal"
+							:day="weekDay[index]"
 							:id="index"
 							@get-new-meal="getNewMeal($event, index)"
 						>
