@@ -34,7 +34,10 @@ Vue.component('menu-item', {
 	emits:['get-new-meal'],
 	template:`
 		<li class="menu__meal">
-			[[meal.name || meal]]
+			<a v-if="meal.name" :href="'app/meal/' + [[meal.id]]" target='_blank'>
+				[[meal.name]]
+			</a>
+			<span v-else>[[meal.name || meal]]</span>
 			<button @click="$emit('get-new-meal', meal.category)">New</button>
 		</li>
 	`
